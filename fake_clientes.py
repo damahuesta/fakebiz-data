@@ -1,26 +1,47 @@
 import pandas as pd
-import numpy as np
 import random
 import string
 from faker import Faker
 from datetime import datetime, timedelta
+from typing import List, Optional, Set, Union
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class ClientesFaker:
-    def __init__(self, n_clientes=100, exclude_ids=None):
-        print("Generando clientes...")
+    """
+    Generador de clientes falsos con datos demográficos y de identificación.
+    """
+    def __init__(self, n_clientes: int = 100, exclude_ids: Optional[Union[Set[str], List[str]]] = None, seed: Optional[int] = None):
+        """
+        n_clientes: número de clientes a generar.
+        exclude_ids: conjunto/lista de IDs a excluir.
+        seed: semilla para reproducibilidad (opcional).
+        """
+        if seed is not None:
+            random.seed(seed)
+            Faker.seed(seed)
         self.n_clientes = n_clientes
         self.exclude_ids = set(exclude_ids) if exclude_ids else set()
         self.fake = Faker(['es_ES', 'en_US', 'fr_FR', 'de_DE'])
         self.fake_global = Faker()
         self.hoy = datetime.today()
+        logger.info("Generando clientes...")
         self.clientes = self._generar_clientes(n_clientes)
-        print(f"Clientes generados: {len(self.clientes)}")
+        logger.info(f"Clientes generados: {len(self.clientes)}")
         
-    def letra_dni(self, numero):
+    def letra_dni(self, numero: Union[int, str]) -> str:
+        """
+        Calcula la letra del DNI español para un número dado.
+        """
         letras = "TRWAGMYFPDXBNJZSQVHLCKE"
         return letras[int(numero) % 23]
 
-    def gen_cod_docum(self, tipo):
+    def gen_cod_docum(self, tipo: str) -> str:
+        """
+        Genera un código de documento según el tipo.
+        """
         if tipo == "DNI":
             return self.fake.nif()
         elif tipo == "NIE":
@@ -30,17 +51,26 @@ class ClientesFaker:
         else:  # OTRO
             return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
 
-    def random_fecha_nacimiento(self):
+    def random_fecha_nacimiento(self) -> datetime:
+        """
+        Genera una fecha de nacimiento aleatoria.
+        """
         max_years = 120
         start_date = self.hoy - timedelta(days=365.25 * max_years)
         nacimiento = self.fake.date_between(start_date=start_date, end_date=self.hoy)
         return nacimiento
 
-    def random_fecha_cliente(self, fecha_nac):
+    def random_fecha_cliente(self, fecha_nac: datetime) -> datetime:
+        """
+        Genera una fecha de alta de cliente posterior a la fecha de nacimiento.
+        """
         cliente = self.fake.date_between(start_date=fecha_nac, end_date=self.hoy)
         return cliente
 
-    def _generar_clientes(self, n_clientes):
+    def _generar_clientes(self, n_clientes: int) -> pd.DataFrame:
+        """
+        Genera el DataFrame de clientes.
+        """
         # Definir valores y pesos para tipo_docum
         tipos = ["DNI", "NIE", "PASAPORTE", "OTRO"]
         pesos = [0.6, 0.15, 0.2, 0.05]
@@ -119,6 +149,9 @@ class ClientesFaker:
         clientes = clientes.sample(frac=1).reset_index(drop=True)  # Desordenar
         return clientes
     
-    def get_clientes(self):
-        print("Obteniendo DataFrame de clientes")
+    def get_clientes(self) -> pd.DataFrame:
+        """
+        Devuelve el DataFrame de clientes.
+        """
+        logger.info("Obteniendo DataFrame de clientes")
         return self.clientes

@@ -1,5 +1,11 @@
-# Ignorar archivos CSV generados
+# Ignorar archivos CSV generados, excepto los de data/in
 *.csv
+!data/in/*.csv
+
+# Incluir la estructura de carpetas de data
+!data/
+!data/in/
+!data/out/
 
 # Ignorar archivos de entorno virtual
 .env

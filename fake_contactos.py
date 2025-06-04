@@ -2,24 +2,42 @@ import pandas as pd
 import random
 from faker import Faker
 from datetime import datetime
+from typing import Optional
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class ContactosFaker:
-    def __init__(self, clientes, n_contactos_por_cliente=None):
-        print("Generando contactos...")
+    """
+    Generador de contactos falsos asociados a clientes.
+    """
+    def __init__(self, clientes, n_contactos_por_cliente: Optional[int] = None, seed: Optional[int] = None):
+        """
+        clientes: instancia de ClientesFaker.
+        n_contactos_por_cliente: número fijo de contactos por cliente (opcional).
+        seed: semilla para reproducibilidad (opcional).
+        """
+        if seed is not None:
+            random.seed(seed)
+            Faker.seed(seed)
         self.clientes = clientes
-        self.n_contactos_por_cliente = n_contactos_por_cliente  # Puede ser None
+        self.n_contactos_por_cliente = n_contactos_por_cliente
         self.fake_locales = {
             "España": Faker('es_ES'),
             "France": Faker('fr_FR'),
             "Germany": Faker('de_DE'),
             "United States": Faker('en_US'),
-            # ...puedes añadir más países/locales si es necesario...
         }
         self.default_fake = Faker(['es_ES', 'en_US', 'fr_FR', 'de_DE'])
+        logger.info("Generando contactos...")
         self.contactos = self._generar_contactos()
-        print(f"Contactos generados: {len(self.contactos)}")
+        logger.info(f"Contactos generados: {len(self.contactos)}")
 
-    def get_faker_for_pais(self, pais):
+    def get_faker_for_pais(self, pais: str) -> Faker:
+        """
+        Devuelve el generador Faker adecuado para el país.
+        """
         # Normaliza nombres de país
         if pais.lower() in ["españa", "spain"]:
             return self.fake_locales["España"]
@@ -32,7 +50,10 @@ class ContactosFaker:
         else:
             return self.default_fake
 
-    def _generar_contactos(self):
+    def _generar_contactos(self) -> pd.DataFrame:
+        """
+        Genera el DataFrame de contactos.
+        """
         contactos_list = []
         tipos = ["email", "telefono", "fax", "web"]
         pesos = [0.45, 0.4, 0.08, 0.07]  # Más peso para email y teléfono
@@ -78,6 +99,9 @@ class ContactosFaker:
         df = df.sample(frac=1).reset_index(drop=True)  # Desordenar
         return df
 
-    def get_contactos(self):
-        print("Obteniendo DataFrame de contactos")
+    def get_contactos(self) -> pd.DataFrame:
+        """
+        Devuelve el DataFrame de contactos.
+        """
+        logger.info("Obteniendo DataFrame de contactos")
         return self.contactos

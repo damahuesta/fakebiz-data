@@ -120,6 +120,25 @@ Genera registros de envíos realizados entre clientes.
 
 ---
 
+### 7. `fake_cuentas_bloqueadas.py`
+Genera cuentas bloqueadas por distintos tipos de fraude.
+
+- **cliente_id**: Referencia a un cliente existente.
+- **tipo_fraude**: Tipo de fraude detectado (`Phishing`, `Robo de identidad`, `Transacciones sospechosas`, `Fraude con tarjeta`, `Lavado de dinero`, `Acceso no autorizado`).
+- **estado_fraude**: Estado del fraude (`Investigación`, `Bloqueado`).
+- **fecha_inclusion**: Fecha de inclusión del registro en la tabla.
+- **fecha_bloqueo**: Fecha de bloqueo de la cuenta (solo si el estado es `Bloqueado`, si no queda vacío).
+- **motivo**: Motivo o descripción breve del caso.
+
+#### Requisitos funcionales:
+- Se genera un 1% de cuentas bloqueadas respecto al total de clientes.
+- El estado del fraude puede ser `Investigación` o `Bloqueado`.
+- La fecha de inclusión siempre está informada.
+- La fecha de bloqueo solo se informa si el estado es `Bloqueado`.
+- Se muestran mensajes por consola durante la generación y obtención de datos.
+
+---
+
 ## Ejecución
 
 El archivo principal es `main_fake_data.py`. Al ejecutarlo, se generan los ficheros CSV en la carpeta `./data/out/`.

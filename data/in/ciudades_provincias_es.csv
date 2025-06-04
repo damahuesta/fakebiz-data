@@ -1,0 +1,312 @@
+ciudad,provincia
+Madrid,Madrid
+Barcelona,Barcelona
+Valencia,Valencia
+La Coruña,A Coruña
+San Sebastián,Guipúzcoa
+Bilbao,Vizcaya
+Sevilla,Sevilla
+Zaragoza,Zaragoza
+Vigo,Pontevedra
+Málaga,Málaga
+Alicante,Alicante
+Murcia,Murcia
+Gijón,Asturias
+Hospitalet de Llobregat,Barcelona
+Valladolid,Valladolid
+Vitoria-Gasteiz,Álava
+La Laguna,Santa Cruz de Tenerife
+Córdoba,Córdoba
+Granada,Granada
+Elche,Alicante
+Oviedo,Asturias
+Badalona,Barcelona
+Cartagena,Murcia
+Terrassa,Barcelona
+Jerez de la Frontera,Cádiz
+Sabadell,Barcelona
+Móstoles,Madrid
+Santa Cruz de Tenerife,Santa Cruz de Tenerife
+Pamplona,Navarra
+Almería,Almería
+Alcalá de Henares,Madrid
+Fuenlabrada,Madrid
+Leganés,Madrid
+Donostia,Guipúzcoa
+Santander,Cantabria
+Castellón de la Plana,Castellón
+Burgos,Burgos
+Albacete,Albacete
+Getafe,Madrid
+Salamanca,Salamanca
+Logroño,La Rioja
+Huelva,Huelva
+Badajoz,Badajoz
+Tarragona,Tarragona
+Lleida,Lleida
+León,León
+Cádiz,Cádiz
+Marbella,Málaga
+Jaén,Jaén
+Ourense,Ourense
+Girona,Girona
+Ciudad Real,Ciudad Real
+Algeciras,Cádiz
+Santiago de Compostela,A Coruña
+Torrevieja,Alicante
+Parla,Madrid
+Torrejón de Ardoz,Madrid
+Mataró,Barcelona
+Reus,Tarragona
+Barakaldo,Vizcaya
+Sants-Montjuïc,Barcelona
+Alcobendas,Madrid
+San Fernando,Cádiz
+Benidorm,Alicante
+Ponferrada,León
+Talavera de la Reina,Toledo
+Ferrol,A Coruña
+Orihuela,Alicante
+Rubí,Barcelona
+Manresa,Barcelona
+Toledo,Toledo
+Cuenca,Cuenca
+Segovia,Segovia
+Ávila,Ávila
+Palencia,Palencia
+Guadalajara,Guadalajara
+Huesca,Huesca
+Teruel,Teruel
+Soria,Soria
+Ceuta,Ceuta
+Melilla,Melilla
+Sanlúcar de Barrameda,Cádiz
+Linares,Jaén
+Alcoy,Alicante
+Puertollano,Ciudad Real
+Elda,Alicante
+San Vicente del Raspeig,Alicante
+Aranjuez,Madrid
+Valdepeñas,Ciudad Real
+Motril,Granada
+Chiclana de la Frontera,Cádiz
+Écija,Sevilla
+Torremolinos,Málaga
+Lucena,Córdoba
+Vélez-Málaga,Málaga
+Pontevedra,Pontevedra
+Ibiza,Baleares
+Tudela,Navarra
+Sanlúcar la Mayor,Sevilla
+Cieza,Murcia
+Puerto Real,Cádiz
+San Andrés del Rabanedo,León
+Almendralejo,Badajoz
+Villena,Alicante
+Ronda,Málaga
+San Bartolomé de Tirajana,Las Palmas
+San Sebastián de los Reyes,Madrid
+Arrecife,Las Palmas
+Viladecans,Barcelona
+Puente Genil,Córdoba
+Manacor,Baleares
+La Línea de la Concepción,Cádiz
+San Fernando de Henares,Madrid
+Olot,Girona
+Villarreal,Castellón
+Catarroja,Valencia
+Alcázar de San Juan,Ciudad Real
+Algete,Madrid
+Almuñécar,Granada
+Alhaurín de la Torre,Málaga
+Alcantarilla,Murcia
+Alfafar,Valencia
+Alzira,Valencia
+Almassora,Castellón
+Almansa,Albacete
+Almonte,Huelva
+Alpedrete,Madrid
+Altea,Alicante
+Amorebieta-Etxano,Vizcaya
+Andújar,Jaén
+Antequera,Málaga
+Aranda de Duero,Burgos
+Arganda del Rey,Madrid
+Arona,Santa Cruz de Tenerife
+Astorga,León
+Ayamonte,Huelva
+Barbate,Cádiz
+Barberà del Vallès,Barcelona
+Basauri,Vizcaya
+Benalmádena,Málaga
+Benavente,Zamora
+Berga,Barcelona
+Bétera,Valencia
+Blanes,Girona
+Boadilla del Monte,Madrid
+Boiro,A Coruña
+Bormujos,Sevilla
+Burlada,Navarra
+Camas,Sevilla
+Cambrils,Tarragona
+Canet de Mar,Barcelona
+Carballo,A Coruña
+Carmona,Sevilla
+Cártama,Málaga
+Cieza,Murcia
+Ciudad Rodrigo,Salamanca
+Collado Villalba,Madrid
+Colmenar Viejo,Madrid
+Coria del Río,Sevilla
+Coslada,Madrid
+Culleredo,A Coruña
+Denia,Alicante
+Dos Hermanas,Sevilla
+Durango,Vizcaya
+El Ejido,Almería
+El Prat de Llobregat,Barcelona
+El Puerto de Santa María,Cádiz
+El Vendrell,Tarragona
+Elda,Alicante
+Esplugues de Llobregat,Barcelona
+Estepona,Málaga
+Figueres,Girona
+Gandía,Valencia
+Gavà,Barcelona
+Gernika-Lumo,Vizcaya
+Granollers,Barcelona
+Guadix,Granada
+Guadalajara,Guadalajara
+Guadalupe,Badajoz
+Hellín,Albacete
+Huesca,Huesca
+Ibi,Alicante
+Igualada,Barcelona
+Illescas,Toledo
+Inca,Baleares
+Irún,Guipúzcoa
+Jumilla,Murcia
+La Orotava,Santa Cruz de Tenerife
+La Rinconada,Sevilla
+La Unión,Murcia
+Las Rozas de Madrid,Madrid
+Linares,Jaén
+Llodio,Álava
+Lloret de Mar,Girona
+Lorca,Murcia
+Los Barrios,Cádiz
+Los Palacios y Villafranca,Sevilla
+Lugo,Lugo
+Manises,Valencia
+Maracena,Granada
+Martorell,Barcelona
+Mazarrón,Murcia
+Medina del Campo,Valladolid
+Melilla,Melilla
+Mérida,Badajoz
+Mieres,Asturias
+Miranda de Ebro,Burgos
+Mislata,Valencia
+Molina de Segura,Murcia
+Moncada,Valencia
+Monforte de Lemos,Lugo
+Montcada i Reixac,Barcelona
+Montilla,Córdoba
+Morón de la Frontera,Sevilla
+Móstoles,Madrid
+Motril,Granada
+Mula,Murcia
+Murcia,Murcia
+Nerja,Málaga
+O Barco de Valdeorras,Ourense
+O Carballiño,Ourense
+O Porriño,Pontevedra
+Oleiros,A Coruña
+Ontinyent,Valencia
+Orihuela,Alicante
+Ourense,Ourense
+Oviedo,Asturias
+Palafrugell,Girona
+Palamos,Girona
+Palencia,Palencia
+Palma,Baleares
+Paterna,Valencia
+Pinto,Madrid
+Plasencia,Cáceres
+Ponferrada,León
+Pontevedra,Pontevedra
+Pozuelo de Alarcón,Madrid
+Puente Genil,Córdoba
+Puerto de la Cruz,Santa Cruz de Tenerife
+Puerto Real,Cádiz
+Puertollano,Ciudad Real
+Rincón de la Victoria,Málaga
+Ripollet,Barcelona
+Rivas-Vaciamadrid,Madrid
+Ronda,Málaga
+Roquetas de Mar,Almería
+Rubí,Barcelona
+Sabadell,Barcelona
+Sagunto,Valencia
+Salamanca,Salamanca
+San Adrián de Besós,Barcelona
+San Bartolomé de Tirajana,Las Palmas
+San Cristóbal de La Laguna,Santa Cruz de Tenerife
+San Fernando,Cádiz
+San Fernando de Henares,Madrid
+San Javier,Murcia
+San Joan Despí,Barcelona
+San Juan de Aznalfarache,Sevilla
+San Sebastián,Guipúzcoa
+San Sebastián de los Reyes,Madrid
+San Vicente del Raspeig,Alicante
+Sanlúcar de Barrameda,Cádiz
+Santa Coloma de Gramenet,Barcelona
+Santa Eulària des Riu,Baleares
+Santa Lucía de Tirajana,Las Palmas
+Santa Pola,Alicante
+Santander,Cantabria
+Santiago de Compostela,A Coruña
+Santurtzi,Vizcaya
+Segovia,Segovia
+Sestao,Vizcaya
+Sevilla,Sevilla
+Silla,Valencia
+Sitges,Barcelona
+Soria,Soria
+Sueca,Valencia
+Talavera de la Reina,Toledo
+Tarragona,Tarragona
+Telde,Las Palmas
+Teruel,Teruel
+Toledo,Toledo
+Tomelloso,Ciudad Real
+Torrelavega,Cantabria
+Torremolinos,Málaga
+Torrent,Valencia
+Torrevieja,Alicante
+Tudela,Navarra
+Utrera,Sevilla
+Valdepeñas,Ciudad Real
+Valencia,Valencia
+Valencia de Don Juan,León
+Valladolid,Valladolid
+Vélez-Málaga,Málaga
+Vendrell,Tarragona
+Vigo,Pontevedra
+Viladecans,Barcelona
+Vila-real,Castellón
+Villagarcía de Arosa,Pontevedra
+Villalba,Madrid
+Villanueva de la Serena,Badajoz
+Villanueva y Geltrú,Barcelona
+Villareal,Castellón
+Villarrobledo,Albacete
+Vitoria-Gasteiz,Álava
+Viveiro,Lugo
+Xàtiva,Valencia
+Yecla,Murcia
+Zafra,Badajoz
+Zamora,Zamora
+Zaragoza,Zaragoza
+# ...añade más pares ciudad/provincia si lo deseas...

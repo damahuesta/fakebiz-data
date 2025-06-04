@@ -2,27 +2,41 @@ import pandas as pd
 import numpy as np
 from faker import Faker
 from datetime import datetime
+from typing import Optional, Union
+import logging
+
+from fake_clientes import ClientesFaker
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class EnviosFaker:
-    def __init__(self, clientes, seed=None):
+    """
+    Generador de envíos falsos entre clientes.
+    """
+    def __init__(self, clientes: Union['ClientesFaker', pd.DataFrame], seed: Optional[int] = None):
         """
-        clientes: instancia de ClientesFaker o DataFrame con columna 'cliente_id'
+        clientes: instancia de ClientesFaker o DataFrame con columna 'cliente_id'.
+        seed: semilla para reproducibilidad (opcional).
         """
-        print("Generando envíos...")
+        logger.info("Generando envíos...")
         self.seed = seed
-        self.fake = Faker('es_ES')
         if seed is not None:
             np.random.seed(seed)
             Faker.seed(seed)
+        self.fake = Faker('es_ES')
         # Permitir tanto instancia como DataFrame
         if hasattr(clientes, "get_clientes"):
             self.clientes_df = clientes.get_clientes()
         else:
             self.clientes_df = clientes
         self.envios = self._generar_envios()
-        print(f"Envíos generados: {len(self.envios)}")
+        logger.info(f"Envíos generados: {len(self.envios)}")
 
-    def _generar_envios(self):
+    def _generar_envios(self) -> pd.DataFrame:
+        """
+        Genera el DataFrame de envíos.
+        """
         MOTIVOS_ENVIO = ['Pago', 'Regalo', 'Transferencia', 'Devolución', 'Otro']
         cliente_ids = self.clientes_df['cliente_id'].tolist()
         n_clientes = len(cliente_ids)
@@ -50,6 +64,9 @@ class EnviosFaker:
         df = df.sample(frac=1).reset_index(drop=True)  # Desordenar
         return df
 
-    def get_envios(self):
-        print("Obteniendo DataFrame de envíos")
+    def get_envios(self) -> pd.DataFrame:
+        """
+        Devuelve el DataFrame de envíos.
+        """
+        logger.info("Obteniendo DataFrame de envíos")
         return self.envios

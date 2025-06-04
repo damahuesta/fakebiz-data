@@ -1,20 +1,38 @@
 import pandas as pd
 import numpy as np
 import random
-import string
 from faker import Faker
-from datetime import datetime, timedelta
+from datetime import datetime
+from typing import Optional
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class ContratosFaker:
-    def __init__(self, clientes):
-        print("Generando contratos...")
+    """
+    Generador de contratos falsos asociados a clientes.
+    """
+    def __init__(self, clientes, seed: Optional[int] = None):
+        """
+        clientes: instancia de ClientesFaker.
+        seed: semilla para reproducibilidad (opcional).
+        """
+        if seed is not None:
+            random.seed(seed)
+            Faker.seed(seed)
+            np.random.seed(seed)
         self.fake = Faker(['es_ES', 'en_US', 'fr_FR', 'de_DE'])
         self.clientes = clientes
         self.hoy = datetime.today()
+        logger.info("Generando contratos...")
         self.contratos = self._generar_contratos()
-        print(f"Contratos generados: {len(self.contratos)}")
+        logger.info(f"Contratos generados: {len(self.contratos)}")
 
-    def _generar_contratos(self):
+    def _generar_contratos(self) -> pd.DataFrame:
+        """
+        Genera el DataFrame de contratos.
+        """
         empresas = [f"EMP{str(i+1).zfill(2)}" for i in range(5)]
         centros_por_empresa = {e: [f"CEN{str(j+1).zfill(2)}" for j in range(7)] for e in empresas}
         productos = [f"PRD{str(i+1).zfill(2)}" for i in range(25)]
@@ -85,6 +103,9 @@ class ContratosFaker:
         contratos = contratos.sample(frac=1).reset_index(drop=True)  # Desordenar
         return contratos
 
-    def get_contratos(self):
-        print("Obteniendo DataFrame de contratos")
+    def get_contratos(self) -> pd.DataFrame:
+        """
+        Devuelve el DataFrame de contratos.
+        """
+        logger.info("Obteniendo DataFrame de contratos")
         return self.contratos

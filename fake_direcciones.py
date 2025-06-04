@@ -1,30 +1,49 @@
 import pandas as pd
 import random
 from faker import Faker
+from typing import Optional
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class DireccionesFaker:
-    def __init__(self, clientes):
-        print("Generando direcciones...")
+    """
+    Generador de direcciones falsas asociadas a clientes.
+    """
+    def __init__(self, clientes, seed: Optional[int] = None):
+        """
+        clientes: instancia de ClientesFaker.
+        seed: semilla para reproducibilidad (opcional).
+        """
+        if seed is not None:
+            random.seed(seed)
+            Faker.seed(seed)
         self.clientes = clientes
         self.fake_locales = {
             "España": Faker('es_ES'),
             "France": Faker('fr_FR'),
             "Germany": Faker('de_DE'),
             "United States": Faker('en_US'),
-            # ...puedes añadir más países/locales si es necesario...
         }
         self.default_fake = Faker(['es_ES', 'en_US', 'fr_FR', 'de_DE'])
-        # Cargamos el mapeo de ciudades/provincias desde un CSV externo
         self.ciudades_provincias_es = self._cargar_ciudades_provincias_es()
+        logger.info("Generando direcciones...")
         self.direcciones = self._generar_direcciones()
-        print(f"Direcciones generadas: {len(self.direcciones)}")
+        logger.info(f"Direcciones generadas: {len(self.direcciones)}")
 
     def _cargar_ciudades_provincias_es(self):
+        """
+        Carga el mapeo de ciudades y provincias españolas desde CSV.
+        """
         df = pd.read_csv('./data/in/ciudades_provincias_es.csv')
         # Espera columnas: ciudad,provincia
         return list(df.itertuples(index=False, name=None))
 
-    def _generar_direcciones(self):
+    def _generar_direcciones(self) -> pd.DataFrame:
+        """
+        Genera el DataFrame de direcciones.
+        """
         direcciones_list = []
         # Pesos: mayoría 1 o 2 domicilios
         pesos_domicilios = [0.6, 0.3, 0.07, 0.02, 0.01]
@@ -66,6 +85,9 @@ class DireccionesFaker:
         df = df.sample(frac=1).reset_index(drop=True)  # Desordenar
         return df
 
-    def get_direcciones(self):
-        print("Obteniendo DataFrame de direcciones")
+    def get_direcciones(self) -> pd.DataFrame:
+        """
+        Devuelve el DataFrame de direcciones.
+        """
+        logger.info("Obteniendo DataFrame de direcciones")
         return self.direcciones

@@ -3,19 +3,38 @@ import random
 import string
 from faker import Faker
 from datetime import datetime, timedelta
+from typing import Optional, Union, Set, List
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class ExClientesFaker:
-    def __init__(self, n_exclientes=None, exclude_ids=None):
-        print("Generando exclientes...")
+    """
+    Generador de exclientes falsos con motivos de baja y posible recuperación.
+    """
+    def __init__(self, n_exclientes: Optional[int] = None, exclude_ids: Optional[Union[Set[str], List[str]]] = None, seed: Optional[int] = None):
+        """
+        n_exclientes: número de exclientes a generar.
+        exclude_ids: conjunto/lista de IDs a excluir.
+        seed: semilla para reproducibilidad (opcional).
+        """
+        if seed is not None:
+            random.seed(seed)
+            Faker.seed(seed)
         self.n_exclientes = n_exclientes
         self.exclude_ids = set(exclude_ids) if exclude_ids else set()
         self.fake = Faker(['es_ES', 'en_US', 'fr_FR', 'de_DE'])
         self.fake_global = Faker()
         self.hoy = datetime.today()
+        logger.info("Generando exclientes...")
         self._exclientes = self.__generar_exclientes()
-        print(f"Exclientes generados: {len(self._exclientes)}")
+        logger.info(f"Exclientes generados: {len(self._exclientes)}")
 
-    def gen_cod_docum(self, tipo):
+    def gen_cod_docum(self, tipo: str) -> str:
+        """
+        Genera un código de documento según el tipo.
+        """
         if tipo == "DNI":
             return self.fake.nif()
         elif tipo == "NIE":
@@ -25,17 +44,26 @@ class ExClientesFaker:
         else:  # OTRO
             return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
 
-    def random_fecha_nacimiento(self):
+    def random_fecha_nacimiento(self) -> datetime:
+        """
+        Genera una fecha de nacimiento aleatoria.
+        """
         max_years = 120
         start_date = self.hoy - timedelta(days=365.25 * max_years)
         nacimiento = self.fake.date_between(start_date=start_date, end_date=self.hoy)
         return nacimiento
 
-    def random_fecha_cliente(self, fecha_nac):
+    def random_fecha_cliente(self, fecha_nac: datetime) -> datetime:
+        """
+        Genera una fecha de alta de cliente posterior a la fecha de nacimiento.
+        """
         cliente = self.fake.date_between(start_date=fecha_nac, end_date=self.hoy)
         return cliente
 
-    def __generar_exclientes(self):
+    def __generar_exclientes(self) -> pd.DataFrame:
+        """
+        Genera el DataFrame de exclientes.
+        """
         tipos = ["DNI", "NIE", "PASAPORTE", "OTRO"]
         pesos = [0.6, 0.15, 0.2, 0.05]
         motivos = ("Voluntaria", "Incumplimiento", "Fallecimiento")
@@ -129,11 +157,9 @@ class ExClientesFaker:
         exclientes = exclientes.sample(frac=1).reset_index(drop=True)
         return exclientes
 
-    def get_exclientes(self):
-        print("Obteniendo DataFrame de exclientes")
+    def get_exclientes(self) -> pd.DataFrame:
         """
         Devuelve el DataFrame de exclientes.
-        La columna 'fecha_recuperacion_excliente' indica la fecha en la que el excliente vuelve a ser cliente.
-        Si es None, el excliente no ha sido recuperado.
         """
+        logger.info("Obteniendo DataFrame de exclientes")
         return self._exclientes
